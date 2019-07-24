@@ -11,6 +11,9 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+{{--                        {!! csrf_field !!}--}}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
