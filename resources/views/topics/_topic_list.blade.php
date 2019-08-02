@@ -22,7 +22,7 @@
 
                     <small class="media-body meta text-secondary">
 
-                        <a class="text-secondary" href="#" title="{{ $topic->category->name }}">
+                        <a class="text-secondary" href="{{ route('categories.show', $topic->category_id) }}" title="{{ $topic->category->name }}">
                             {{ $topic->category->name }}
                         </a>
 
