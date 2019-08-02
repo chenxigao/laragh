@@ -32,7 +32,7 @@ class SeedCategoriesData extends Migration
             ],
         ];
 
-        DB::table('categories')->insert($categories);
+        DB::table('categories')->insert($categories); 
 
     }
 
