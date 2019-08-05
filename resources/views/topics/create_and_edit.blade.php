@@ -41,22 +41,23 @@
                                         <select class="form-control" name="category_id" required/>
                                         <option value="" hidden disabled selected>请选择分类</option>
                                         @foreach($categories as $value)
-                                                <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                        @endforeach
-                                        </select>
+                                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endforeach
+                                            </select>
                                     </div>
 
                                     <div class="form-group">
 
                                         <textarea name="body" id="editor" class="form-control"
-                                                  rows="6" placeholder="请输入至少三个字符的内容···">{{ old('body', $topic->body ) }}</textarea>
+                                                  rows="6"
+                                                  placeholder="请输入至少三个字符的内容···">{{ old('body', $topic->body ) }}</textarea>
                                     </div>
-
 
 
                                     <div class="well well-sm">
                                         <button type="submit" class="btn btn-primary">
-                                            <i class="far fa-save mr-2" aria-hidden="true"></i>保存</button>
+                                            <i class="far fa-save mr-2" aria-hidden="true"></i>保存
+                                        </button>
                                     </div>
                                 </form>
                 </div>
@@ -65,3 +66,23 @@
     </div>
 
 @endsection
+
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
+@stop
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var editor = new Simditor({
+                textarea: $('#editor'),
+
+            });
+        });
+    </script>
+@stop
+
