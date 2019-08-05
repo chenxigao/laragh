@@ -23,7 +23,13 @@
                     <small class="media-body meta text-secondary">
 
                         <a class="text-secondary" href="{{ route('categories.show', $topic->category_id) }}" title="{{ $topic->category->name }}">
+                            <i class="fa fa-folder"></i>
                             {{ $topic->category->name }}
+                        </a>
+
+                        <a class="text-secondary" href="{{ route('users.show', [$topic->user_id]) }}">
+                            <i class="fa fa-user"></i>
+                            {{ $topic->user->name }}
                         </a>
 
                         <span> • </span>

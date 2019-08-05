@@ -43,4 +43,10 @@ class User extends Authenticatable implements MustVerifyEmailContracts
         //一个用户可以拥有多个话题
         return   $this->hasMany(Topic::class);
     }
+
+    public function isAuthorOf($model)
+    {
+        return $this->id == $model->user_id;
+    }
+    
 }
