@@ -36,8 +36,8 @@
                     <div class="article text-center text-secondary">
                         {{ $topic->created_at->diffForHumans() }}
                         ⋅
-                        <i class="fa fa-comment"></i>
-                        {{ $topic->replu_count }}
+                        <i class="far fa-comment"></i>
+                        {{ $topic->reply_count }}
                     </div>
                     <div class="topic-body mt-4 mb-4">
                         {!! $topic->body !!}

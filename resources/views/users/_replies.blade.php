@@ -26,6 +26,6 @@
 
 {{--分页--}}
 <div class="mt-4 pt-1">
-{!! $replieds->appends(Request::except('page'))->render() !!}
+{!! $replies->appends(Request::except('page'))->render() !!}
 </div>
 
