@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmailContracts
             $this->increment('notification_count');
         }
 
-        return  $this->laravelNotify($instance);
+        $this->laravelNotify($instance);
     }
 
 
@@ -77,5 +77,12 @@ class User extends Authenticatable implements MustVerifyEmailContracts
     }
 
 
+    public function markAsRead()
+    {
+        $this->notification_count =  0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
+        
+    }
 
 }
