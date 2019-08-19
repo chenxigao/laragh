@@ -7,9 +7,11 @@ use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 Use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContracts;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmailContracts
 {
+    use HasRoles;
     use MustVerifyEmailTrait;
 
     use Notifiable {
