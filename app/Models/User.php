@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use function GuzzleHttp\Psr7\str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,12 +22,12 @@ class User extends Authenticatable implements MustVerifyEmailContracts
     public function notify($instance)
     {
         //如果通知的人是当前用户，就不必通知了
-        if ($this->id == Auth::id()){
+        if ($this->id == Auth::id()) {
             return;
         }
 
         //只有数据库类型通知才需提醒，直接 发送email和其他的 都pass
-        if (method_exists($instance, 'toDatabase')){
+        if (method_exists($instance, 'toDatabase')) {
             $this->increment('notification_count');
         }
 
@@ -64,7 +65,7 @@ class User extends Authenticatable implements MustVerifyEmailContracts
     public function topics()
     {
         //一个用户可以拥有多个话题
-        return   $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class);
     }
 
     public function replies()
@@ -81,10 +82,33 @@ class User extends Authenticatable implements MustVerifyEmailContracts
 
     public function markAsRead()
     {
-        $this->notification_count =  0;
+        $this->notification_count = 0;
         $this->save();
         $this->unreadNotifications->markAsRead();
-        
+
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        //如果值的长度 等于60，即认为已经做过加密的情况
+        if (strlen($value) != 60) {
+            //不等于 60作加密处理
+            $value = bcrypt($value);
+        }
+
+        $this->attributes['password'] = $value;
+    }
+
+    public function setAvatarAttribute($path)
+    {
+        //如果不是 http 子串开头，那就是从后台上传的 需要补全url
+        if (!starts_with($path, 'http')) {
+
+            //拼接完整的url
+            $path = config('app.url') . "/uploads/images/avatars/$path";
+        }
+
+        $this->attributes['avatar'] = $path;
     }
 
 }
