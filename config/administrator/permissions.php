@@ -7,13 +7,14 @@ return [
     'single'=>'权限',
     'model'=> Permission::class,
 
-    'permissions' => function($value, $model)
+    'permission' => function()
     {
         return Auth::user()->can('manage_users');
     },
 
+
     //对CRUD动作的单独权限控制，通过来返回布尔值来控制权限
-    'action_permission'=>[
+    'action_permissions'=>[
         //控制新建按钮的显示
         'create'=>function($model)
         {

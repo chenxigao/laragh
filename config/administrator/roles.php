@@ -7,7 +7,7 @@ return [
     'single' => '角色',
     'model'  => Role::class,
 
-    'permissions' => function () {
+    'permission' => function () {
         return Auth::user()->can('manage_users');
     },
 
@@ -18,7 +18,7 @@ return [
         'name'       => [
             'title' => '标识',
         ],
-        'permission' => [
+        'permissions' => [
             'title'    => '权限',
             'output'   => function ($value, $model) {
                 $model->load('permissions');
