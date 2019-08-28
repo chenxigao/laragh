@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use function GuzzleHttp\Psr7\str;
+use GuzzleHttp\Psr7\str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-Use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContracts;
+Use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmailContracts
+class User extends Authenticatable implements MustVerifyEmailContract
 {
+    use Traits\ActiveUserHelper;
     use HasRoles;
     use MustVerifyEmailTrait;
 
