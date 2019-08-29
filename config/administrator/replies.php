@@ -61,6 +61,28 @@ return [
         ],
     ],
 
+    'filters' => [
+        'user' => [
+            'title' => '用户',
+            'type' => 'relationship',
+            'name_field' => 'name',
+            'autocomplete' => true,
+            'search_fields' => array("CONCAT(ID, ' ', name)"),
+            'option_sort_field' => 'id',
+        ],
+        'topic' => [
+            'title' => '话题',
+            'type' => 'relationship',
+            'name_field' => 'title',
+            'autocomplete' => true,
+            'search_fields' => array("CONCAT(ID, ' ' , title)"),
+            'option_sort_field' => 'id',
+        ],
+        'content' => [
+            'title' => '回复内容',
+        ]
+    ],
+
     'rules' => [
         'content' => 'required',
     ],
